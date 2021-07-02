@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <HelloWorld/>
+      <HelloWorld msg="오늘의 벚꽃"/>
     </div>
   </div>
 </template>

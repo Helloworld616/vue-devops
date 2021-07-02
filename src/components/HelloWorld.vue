@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-5">오늘의 벚꽃</h1>
+    <h1 class="mb-5">{{ msg }}</h1>
     <button type="button" class="btn btn-dark mb-5" @click="getPlace">어디로 갈까요?</button>
     <br>
     <div v-if="isShow" class="d-flex justify-content-center mb-5">
@@ -25,6 +25,11 @@ import _ from 'lodash'
 
 export default {
   name: "HelloWorld",
+  props: {
+    msg: {
+      type: String,
+    }
+  },
   data: function () {
     return {
       places: ['여의도', '석촌호수', '남산', '서울숲', '현충원', '어린이대공원'],
@@ -55,10 +60,6 @@ export default {
   * {
     font-family: 'yg-jalnan';
   }
-
-  /* img {
-    width: 40%;
-  } */
 
   h1 {
     color: #F5A9D0;

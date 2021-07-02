@@ -1,122 +1,89 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest"
-          target="_blank"
-          rel="noopener"
-          >unit-jest</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+  <div>
+    <h1 class="mb-5">오늘의 벚꽃</h1>
+    <button type="button" class="btn btn-dark mb-5" @click="getPlace">어디로 갈까요?</button>
+    <br>
+    <div v-if="isShow" class="d-flex justify-content-center mb-5">
+      <div class="card" style="width: 30rem;">
+        <img :src="imgSrc" class="card-img-top" alt="">
+        <div class="card-body">
+          <p class="card-text">{{ place }}</p>
+        </div>
+      </div>
+    </div>
+    <div id="sound">
+      <!-- <iframe src="../assets//silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
+      <audio autoplay loop controls>
+        <source src="../assets/장범준-01-흔들리는꽃들속에서네샴푸향이느껴진거야.mp3" type="audio/mp3">
+      </audio>
+    </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String,
+  data: function () {
+    return {
+      places: ['여의도', '석촌호수', '남산', '서울숲', '현충원', '어린이대공원'],
+      place: '',
+      imgSrc: '',
+      isShow: false,
+    }
   },
+  methods: {
+    getPlace: function () {
+      this.place = _.sample(this.places)
+      this.imgSrc = require(`../assets/${this.place}.jpg`)
+      this.isShow = true
+    }
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+  @font-face {
+      font-family: 'yg-jalnan';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  * {
+    font-family: 'yg-jalnan';
+  }
+
+  /* img {
+    width: 40%;
+  } */
+
+  h1 {
+    color: #F5A9D0;
+    font-size: 60px;
+  }
+
+  button {
+    background-color: #F5A9D0;
+    border-color: #F5A9D0;
+  }
+
+  p {
+    font-size: 25px;
+  }
+
+  .btn-dark:hover {
+    color: #fff;
+    background-color: #F5A9D0;
+    border-color: #F5A9D0;
+  }
+
+  .btn-check:focus+.btn-dark, .btn-dark:focus {
+    color: #fff;
+    background-color: #F5A9D0;
+    border-color: #F5A9D0;
+    box-shadow: 0 0 0 0rem rgb(66 70 73 / 50%);
 }
 </style>

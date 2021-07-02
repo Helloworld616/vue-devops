@@ -13,9 +13,9 @@
     </div>
     <div id="sound">
       <!-- <iframe src="../assets//silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
-      <audio autoplay loop controls>
+      <!-- <audio autoplay loop controls>
         <source src="../assets/장범준-01-흔들리는꽃들속에서네샴푸향이느껴진거야.mp3" type="audio/mp3">
-      </audio>
+      </audio> -->
     </div>
   </div>
 </template>
